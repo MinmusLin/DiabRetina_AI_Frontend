@@ -5,7 +5,7 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "components/DashboardLayout";
 import DashboardNavbar from "components/DashboardNavbar";
 import DataTable from "components/DataTable";
-import authorsTableData from "./authorsTableData";
+import authorsTableData from "./data";
 
 function History() {
   const {columns, rows} = authorsTableData();
