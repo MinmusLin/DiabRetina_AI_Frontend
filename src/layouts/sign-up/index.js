@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
 import MDBox from "../../components/MDBox";
@@ -33,17 +33,17 @@ function Cover() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="text" label="用户名" variant="standard" fullWidth />
+              <MDInput type="text" label="用户名" variant="standard" fullWidth/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="email" label="邮箱" variant="standard" fullWidth />
+              <MDInput type="email" label="邮箱" variant="standard" fullWidth/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="密码" variant="standard" fullWidth />
+              <MDInput type="password" label="密码" variant="standard" fullWidth/>
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
-              <Checkbox />
-              <MDTypography variant="button" fontWeight="regular" color="text" sx={{ uml: -1 }}>
+              <Checkbox/>
+              <MDTypography variant="button" fontWeight="regular" color="text" sx={{uml: -1}}>
                 &nbsp;&nbsp;我已阅读并同意&nbsp;
               </MDTypography>
               <MDTypography variant="button" fontWeight="bold" color="info" textGradient>

@@ -10,11 +10,11 @@ import {
   collapseIcon,
   collapseText,
 } from "./styles/sidenavCollapse";
-import { useMaterialUIController } from "../../context";
+import {useMaterialUIController} from "../../context";
 
-function SidenavCollapse({ icon, name, active, ...rest }) {
+function SidenavCollapse({icon, name, active, ...rest}) {
   const [controller] = useMaterialUIController();
-  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
+  const {miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor} = controller;
 
   return (
     <ListItem component="li">
@@ -32,11 +32,11 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
       >
         <ListItemIcon
           sx={(theme) =>
-            collapseIconBox(theme, { transparentSidenav, whiteSidenav, darkMode, active })
+            collapseIconBox(theme, {transparentSidenav, whiteSidenav, darkMode, active})
           }
         >
           {typeof icon === "string" ? (
-            <Icon sx={(theme) => collapseIcon(theme, { active })}>{icon}</Icon>
+            <Icon sx={(theme) => collapseIcon(theme, {active})}>{icon}</Icon>
           ) : (
             icon
           )}

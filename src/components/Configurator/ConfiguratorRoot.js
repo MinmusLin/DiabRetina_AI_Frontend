@@ -1,12 +1,12 @@
 import Drawer from "@mui/material/Drawer";
-import { styled } from "@mui/material/styles";
+import {styled} from "@mui/material/styles";
 
-export default styled(Drawer)(({ theme, ownerState }) => {
-  const { boxShadows, functions, transitions } = theme;
-  const { openConfigurator } = ownerState;
+export default styled(Drawer)(({theme, ownerState}) => {
+  const {boxShadows, functions, transitions} = theme;
+  const {openConfigurator} = ownerState;
   const configuratorWidth = 360;
-  const { lg } = boxShadows;
-  const { pxToRem } = functions;
+  const {lg} = boxShadows;
+  const {pxToRem} = functions;
 
   const drawerOpenStyles = () => ({
     width: configuratorWidth,

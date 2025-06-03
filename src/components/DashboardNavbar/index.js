@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useLocation, Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,15 +7,15 @@ import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
 import MDBox from "../MDBox";
 import Breadcrumbs from "../Breadcrumbs";
-import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
-import { useMaterialUIController, setTransparentNavbar, setMiniSidenav } from "../../context";
-import { breadcrumbMap } from "../../routes";
+import {navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu} from "./styles";
+import {useMaterialUIController, setTransparentNavbar, setMiniSidenav} from "../../context";
+import {breadcrumbMap} from "../../routes";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-function DashboardNavbar({ absolute, light, isMini }) {
+function DashboardNavbar({absolute, light, isMini}) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useMaterialUIController();
-  const { miniSidenav, transparentNavbar, fixedNavbar, darkMode } = controller;
+  const {miniSidenav, transparentNavbar, fixedNavbar, darkMode} = controller;
   const route = useLocation().pathname.split("/").slice(1);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
 
-  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
+  const iconsStyle = ({palette: {dark, white, text}, functions: {rgba}}) => ({
     color: () => {
       let colorValue = light || darkMode ? white.main : dark.main;
       if (transparentNavbar && !light) {
@@ -50,10 +50,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
     <AppBar
       position={absolute ? "absolute" : navbarType}
       color="inherit"
-      sx={(theme) => navbar(theme, { transparentNavbar, absolute, light, darkMode })}
+      sx={(theme) => navbar(theme, {transparentNavbar, absolute, light, darkMode})}
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
-        <MDBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
+        <MDBox color="inherit" mb={{xs: 1, md: 0}} sx={(theme) => navbarRow(theme, {isMini})}>
           <Breadcrumbs
             icon="home"
             title={breadcrumbMap[route[route.length - 1]]?.title || "1"}
@@ -63,11 +63,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
           />
         </MDBox>
         {isMini ? null : (
-          <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
+          <MDBox sx={(theme) => navbarRow(theme, {isMini})}>
             <MDBox color={light ? "white" : "inherit"}>
               <Link to="https://github.com/MinmusLin/DiabRetina_AI" target="_blank">
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
-                  <GitHubIcon sx={iconsStyle} color="inherit" />
+                  <GitHubIcon sx={iconsStyle} color="inherit"/>
                 </IconButton>
               </Link>
               <IconButton

@@ -1,6 +1,6 @@
-import { useMemo, useEffect, useState } from "react";
+import {useMemo, useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import { useTable, usePagination, useGlobalFilter, useAsyncDebounce, useSortBy } from "react-table";
+import {useTable, usePagination, useGlobalFilter, useAsyncDebounce, useSortBy} from "react-table";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
@@ -14,15 +14,7 @@ import MDPagination from "../MDPagination";
 import DataTableHeadCell from "./DataTableHeadCell";
 import DataTableBodyCell from "./DataTableBodyCell";
 
-function DataTable({
-  entriesPerPage,
-  canSearch,
-  showTotalEntries,
-  table,
-  pagination,
-  isSorted,
-  noEndBorder,
-}) {
+function DataTable({entriesPerPage, canSearch, showTotalEntries, table, pagination, isSorted, noEndBorder,}) {
   const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
   const entries = entriesPerPage.entries
     ? entriesPerPage.entries.map((el) => el.toString())
@@ -30,7 +22,7 @@ function DataTable({
   const columns = useMemo(() => table.columns, [table]);
   const data = useMemo(() => table.rows, [table]);
   const tableInstance = useTable(
-    { columns, data, initialState: { pageIndex: 0 } },
+    {columns, data, initialState: {pageIndex: 0}},
     useGlobalFilter,
     useSortBy,
     usePagination
@@ -50,7 +42,7 @@ function DataTable({
     previousPage,
     setPageSize,
     setGlobalFilter,
-    state: { pageIndex, pageSize, globalFilter },
+    state: {pageIndex, pageSize, globalFilter},
   } = tableInstance;
   useEffect(() => setPageSize(defaultValue || 10), [defaultValue]);
   const setEntriesPerPage = (value) => setPageSize(value);
@@ -64,10 +56,10 @@ function DataTable({
       {option + 1}
     </MDPagination>
   ));
-  const handleInputPagination = ({ target: { value } }) =>
+  const handleInputPagination = ({target: {value}}) =>
     value > pageOptions.length || value < 0 ? gotoPage(0) : gotoPage(Number(value));
   const customizedPageOptions = pageOptions.map((option) => option + 1);
-  const handleInputPaginationValue = ({ target: value }) => gotoPage(Number(value.value - 1));
+  const handleInputPaginationValue = ({target: value}) => gotoPage(Number(value.value - 1));
   const [search, setSearch] = useState(globalFilter);
   const onSearchChange = useAsyncDebounce((value) => {
     setGlobalFilter(value || undefined);
@@ -94,7 +86,7 @@ function DataTable({
   }
 
   return (
-    <TableContainer sx={{ boxShadow: "none" }}>
+    <TableContainer sx={{boxShadow: "none"}}>
       {entriesPerPage || canSearch ? (
         <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
           {entriesPerPage && (
@@ -107,7 +99,7 @@ function DataTable({
                   setEntriesPerPage(parseInt(newValue, 10));
                 }}
                 size="small"
-                sx={{ width: "5rem" }}
+                sx={{width: "5rem"}}
                 renderInput={(params) => <MDInput {...params} />}
               />
               <MDTypography variant="caption" color="secondary">
@@ -122,7 +114,7 @@ function DataTable({
                 value={search}
                 size="small"
                 fullWidth
-                onChange={({ currentTarget }) => {
+                onChange={({currentTarget}) => {
                   setSearch(search);
                   onSearchChange(currentTarget.value);
                 }}
@@ -171,13 +163,13 @@ function DataTable({
       </Table>
       <MDBox
         display="flex"
-        flexDirection={{ xs: "column", sm: "row" }}
+        flexDirection={{xs: "column", sm: "row"}}
         justifyContent="space-between"
-        alignItems={{ xs: "flex-start", sm: "center" }}
+        alignItems={{xs: "flex-start", sm: "center"}}
         p={!showTotalEntries && pageOptions.length === 1 ? 0 : 3}
       >
         {showTotalEntries && (
-          <MDBox mb={{ xs: 3, sm: 0 }}>
+          <MDBox mb={{xs: 3, sm: 0}}>
             <MDTypography variant="button" color="secondary" fontWeight="regular">
               Showing {entriesStart} to {entriesEnd} of {rows.length} entries
             </MDTypography>
@@ -190,13 +182,13 @@ function DataTable({
           >
             {canPreviousPage && (
               <MDPagination item onClick={() => previousPage()}>
-                <Icon sx={{ fontWeight: "bold" }}>chevron_left</Icon>
+                <Icon sx={{fontWeight: "bold"}}>chevron_left</Icon>
               </MDPagination>
             )}
             {renderPagination.length > 6 ? (
               <MDBox width="5rem" mx={1}>
                 <MDInput
-                  inputProps={{ type: "number", min: 1, max: customizedPageOptions.length }}
+                  inputProps={{type: "number", min: 1, max: customizedPageOptions.length}}
                   value={customizedPageOptions[pageIndex]}
                   onChange={(handleInputPagination, handleInputPaginationValue)}
                 />
@@ -206,7 +198,7 @@ function DataTable({
             )}
             {canNextPage && (
               <MDPagination item onClick={() => nextPage()}>
-                <Icon sx={{ fontWeight: "bold" }}>chevron_right</Icon>
+                <Icon sx={{fontWeight: "bold"}}>chevron_right</Icon>
               </MDPagination>
             )}
           </MDPagination>
@@ -217,10 +209,10 @@ function DataTable({
 }
 
 DataTable.defaultProps = {
-  entriesPerPage: { defaultValue: 10, entries: [5, 10, 15, 20, 25] },
+  entriesPerPage: {defaultValue: 10, entries: [5, 10, 15, 20, 25]},
   canSearch: false,
   showTotalEntries: true,
-  pagination: { variant: "gradient", color: "info" },
+  pagination: {variant: "gradient", color: "info"},
   isSorted: true,
   noEndBorder: false,
 };

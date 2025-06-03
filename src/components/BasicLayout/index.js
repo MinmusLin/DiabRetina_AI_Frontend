@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import MDBox from "../MDBox";
 import PageLayout from "../PageLayout";
 
-function BasicLayout({ image, children }) {
+function BasicLayout({image, children}) {
   return (
     <PageLayout>
       <MDBox
@@ -11,7 +11,7 @@ function BasicLayout({ image, children }) {
         width="100%"
         minHeight="100vh"
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({functions: {linearGradient, rgba}, palette: {gradients}}) =>
             image &&
             `${linearGradient(
               rgba(gradients.dark.main, 0.6),

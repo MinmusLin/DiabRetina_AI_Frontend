@@ -1,8 +1,8 @@
 export default function sidenavLogoLabel(theme, ownerState) {
-  const { functions, transitions, typography, breakpoints } = theme;
-  const { miniSidenav } = ownerState;
-  const { pxToRem } = functions;
-  const { fontWeightMedium } = typography;
+  const {functions, transitions, typography, breakpoints} = theme;
+  const {miniSidenav} = ownerState;
+  const {pxToRem} = functions;
+  const {fontWeightMedium} = typography;
 
   return {
     ml: 0.5,
@@ -12,7 +12,6 @@ export default function sidenavLogoLabel(theme, ownerState) {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.standard,
     }),
-
     [breakpoints.up("xl")]: {
       opacity: miniSidenav ? 0 : 1,
     },

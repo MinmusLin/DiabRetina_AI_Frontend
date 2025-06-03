@@ -4,7 +4,7 @@ import Icon from "@mui/material/Icon";
 import MDBox from "../MDBox";
 import MDTypography from "../MDTypography";
 
-function DefaultCard({ color, title, icon, children }) {
+function DefaultCard({color, title, icon, children}) {
   return (
     <Card>
       <MDBox display="flex" justifyContent="space-between" pt={1} px={2}>
@@ -29,7 +29,7 @@ function DefaultCard({ color, title, icon, children }) {
           <MDTypography variant="h5">{title}</MDTypography>
         </MDBox>
       </MDBox>
-      {/* 这里是插槽内容 */}
+      {/* Slot */}
       {children && <MDBox p={2}>{children}</MDBox>}
     </Card>
   );

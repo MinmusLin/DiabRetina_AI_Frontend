@@ -1,10 +1,10 @@
 function navbar(theme, ownerState) {
-  const { palette, boxShadows, functions, transitions, breakpoints, borders } = theme;
-  const { transparentNavbar, absolute, light, darkMode } = ownerState;
-  const { dark, white, text, transparent, background } = palette;
-  const { navbarBoxShadow } = boxShadows;
-  const { rgba, pxToRem } = functions;
-  const { borderRadius } = borders;
+  const {palette, boxShadows, functions, transitions, breakpoints, borders} = theme;
+  const {transparentNavbar, absolute, light, darkMode} = ownerState;
+  const {dark, white, text, transparent, background} = palette;
+  const {navbarBoxShadow} = boxShadows;
+  const {rgba, pxToRem} = functions;
+  const {borderRadius} = borders;
 
   return {
     boxShadow: transparentNavbar || absolute ? "none" : navbarBoxShadow,
@@ -56,7 +56,7 @@ function navbar(theme, ownerState) {
   };
 }
 
-const navbarContainer = ({ breakpoints }) => ({
+const navbarContainer = ({breakpoints}) => ({
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "space-between",
@@ -71,7 +71,7 @@ const navbarContainer = ({ breakpoints }) => ({
   },
 });
 
-const navbarRow = ({ breakpoints }, { isMini }) => ({
+const navbarRow = ({breakpoints}, {isMini}) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -88,7 +88,7 @@ const navbarRow = ({ breakpoints }, { isMini }) => ({
   },
 });
 
-const navbarIconButton = ({ typography: { size }, breakpoints }) => ({
+const navbarIconButton = ({typography: {size}, breakpoints}) => ({
   px: 1,
 
   "& .material-icons, .material-icons-round": {
@@ -106,7 +106,7 @@ const navbarIconButton = ({ typography: { size }, breakpoints }) => ({
   },
 });
 
-const navbarMobileMenu = ({ breakpoints }) => ({
+const navbarMobileMenu = ({breakpoints}) => ({
   display: "inline-block",
   lineHeight: 0,
 
@@ -115,4 +115,4 @@ const navbarMobileMenu = ({ breakpoints }) => ({
   },
 });
 
-export { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu };
+export {navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu};

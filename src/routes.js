@@ -36,7 +36,7 @@ const routes = [
     key: "diagnosis",
     icon: <Icon fontSize="small">preview</Icon>,
     route: "/diagnosis",
-    component: <Diagnosis />,
+    component: <Diagnosis/>,
   },
   {
     type: "collapse",
@@ -44,7 +44,7 @@ const routes = [
     key: "history",
     icon: <Icon fontSize="small">history</Icon>,
     route: "/history",
-    component: <History />,
+    component: <History/>,
   },
   {
     type: "collapse",
@@ -52,7 +52,7 @@ const routes = [
     key: "agent",
     icon: <Icon fontSize="small">smart_toy</Icon>,
     route: "/agent",
-    component: <Agent />,
+    component: <Agent/>,
   },
   {
     type: "collapse",
@@ -60,7 +60,7 @@ const routes = [
     key: "education",
     icon: <Icon fontSize="small">library_books</Icon>,
     route: "/education",
-    component: <Education />,
+    component: <Education/>,
   },
   {
     type: "divider",
@@ -75,7 +75,7 @@ const routes = [
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
     route: "/sign-in",
-    component: <SignIn />,
+    component: <SignIn/>,
   },
   {
     type: "collapse",
@@ -83,12 +83,12 @@ const routes = [
     key: "sign-up",
     icon: <Icon fontSize="small">person_add</Icon>,
     route: "/sign-up",
-    component: <SignUp />,
+    component: <SignUp/>,
   },
   {
     type: "divider",
   },
 ];
 
-export { breadcrumbMap };
+export {breadcrumbMap};
 export default routes;

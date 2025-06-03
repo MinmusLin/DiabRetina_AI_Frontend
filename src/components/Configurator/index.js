@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import Divider from "@mui/material/Divider";
 import Switch from "@mui/material/Switch";
 import IconButton from "@mui/material/IconButton";
@@ -57,10 +57,10 @@ function Configurator() {
   const handleDarkMode = () => setDarkMode(dispatch, !darkMode);
 
   const sidenavTypeButtonsStyles = ({
-    functions: { pxToRem },
-    palette: { white, dark, background },
-    borders: { borderWidth },
-  }) => ({
+                                      functions: {pxToRem},
+                                      palette: {white, dark, background},
+                                      borders: {borderWidth},
+                                    }) => ({
     height: pxToRem(39),
     background: darkMode ? background.sidenav : white.main,
     color: darkMode ? white.main : dark.main,
@@ -73,9 +73,9 @@ function Configurator() {
   });
 
   const sidenavTypeActiveButtonStyles = ({
-    functions: { pxToRem, linearGradient },
-    palette: { white, gradients, background },
-  }) => ({
+                                           functions: {pxToRem, linearGradient},
+                                           palette: {white, gradients, background},
+                                         }) => ({
     height: pxToRem(39),
     background: darkMode ? white.main : linearGradient(gradients.dark.main, gradients.dark.state),
     color: darkMode ? background.sidenav : white.main,
@@ -86,7 +86,7 @@ function Configurator() {
   });
 
   return (
-    <ConfiguratorRoot variant="permanent" ownerState={{ openConfigurator }}>
+    <ConfiguratorRoot variant="permanent" ownerState={{openConfigurator}}>
       <MDBox
         display="flex"
         justifyContent="space-between"
@@ -102,7 +102,7 @@ function Configurator() {
           </MDTypography>
         </MDBox>
         <Icon
-          sx={({ typography: { size }, palette: { dark, white } }) => ({
+          sx={({typography: {size}, palette: {dark, white}}) => ({
             fontSize: `${size.lg} !important`,
             color: darkMode ? white.main : dark.main,
             stroke: "currentColor",
@@ -115,7 +115,7 @@ function Configurator() {
           close
         </Icon>
       </MDBox>
-      <Divider />
+      <Divider/>
       <MDBox pt={0.5} pb={3} px={3}>
         <MDBox>
           <MDTypography variant="h6">侧边栏颜色</MDTypography>
@@ -127,10 +127,10 @@ function Configurator() {
               <IconButton
                 key={color}
                 sx={({
-                  borders: { borderWidth },
-                  palette: { white, dark, background },
-                  transitions,
-                }) => ({
+                       borders: {borderWidth},
+                       palette: {white, dark, background},
+                       transitions,
+                     }) => ({
                   width: "24px",
                   height: "24px",
                   padding: 0,
@@ -146,7 +146,7 @@ function Configurator() {
                     easing: transitions.easing.sharp,
                     duration: transitions.duration.shorter,
                   }),
-                  backgroundImage: ({ functions: { linearGradient }, palette: { gradients } }) =>
+                  backgroundImage: ({functions: {linearGradient}, palette: {gradients}}) =>
                     linearGradient(gradients[color].main, gradients[color].state),
                   "&:not(:last-child)": {
                     mr: 1,
@@ -179,7 +179,7 @@ function Configurator() {
               onClick={handleDarkSidenav}
               disabled={disabled}
               sx={[
-                { flex: 1 },
+                {flex: 1},
                 !transparentSidenav && !whiteSidenav
                   ? sidenavTypeActiveButtonStyles
                   : sidenavTypeButtonsStyles,
@@ -193,7 +193,7 @@ function Configurator() {
               onClick={handleTransparentSidenav}
               disabled={disabled}
               sx={[
-                { flex: 1 },
+                {flex: 1},
                 transparentSidenav && !whiteSidenav
                   ? sidenavTypeActiveButtonStyles
                   : sidenavTypeButtonsStyles,
@@ -207,7 +207,7 @@ function Configurator() {
               onClick={handleWhiteSidenav}
               disabled={disabled}
               sx={[
-                { flex: 1 },
+                {flex: 1},
                 whiteSidenav && !transparentSidenav
                   ? sidenavTypeActiveButtonStyles
                   : sidenavTypeButtonsStyles,
@@ -217,7 +217,7 @@ function Configurator() {
             </MDButton>
           </MDBox>
         </MDBox>
-        <Divider />
+        <Divider/>
         <MDBox
           display="flex"
           justifyContent="space-between"
@@ -226,14 +226,14 @@ function Configurator() {
           lineHeight={1}
         >
           <MDTypography variant="h6">固定导航栏</MDTypography>
-          <Switch checked={fixedNavbar} onChange={handleFixedNavbar} />
+          <Switch checked={fixedNavbar} onChange={handleFixedNavbar}/>
         </MDBox>
-        <Divider />
+        <Divider/>
         <MDBox display="flex" justifyContent="space-between" alignItems="center" lineHeight={1}>
           <MDTypography variant="h6">夜间模式</MDTypography>
-          <Switch checked={darkMode} onChange={handleDarkMode} />
+          <Switch checked={darkMode} onChange={handleDarkMode}/>
         </MDBox>
-        <Divider />
+        <Divider/>
       </MDBox>
     </ConfiguratorRoot>
   );

@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
 import PropTypes from "prop-types";
 import MDBox from "../MDBox";
-import { useMaterialUIController, setLayout } from "../../context";
+import {useMaterialUIController, setLayout} from "../../context";
 
-function PageLayout({ background, children }) {
+function PageLayout({background, children}) {
   const [, dispatch] = useMaterialUIController();
-  const { pathname } = useLocation();
+  const {pathname} = useLocation();
   useEffect(() => {
     setLayout(dispatch, "page");
   }, [pathname]);
@@ -17,7 +17,7 @@ function PageLayout({ background, children }) {
       height="100%"
       minHeight="100vh"
       bgColor={background}
-      sx={{ overflowX: "hidden" }}
+      sx={{overflowX: "hidden"}}
     >
       {children}
     </MDBox>

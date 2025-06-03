@@ -5,14 +5,14 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "components/DashboardLayout";
 import DashboardNavbar from "components/DashboardNavbar";
 import DataTable from "components/DataTable";
-import authorsTableData from "./data/authorsTableData";
+import authorsTableData from "./authorsTableData";
 
 function History() {
-  const { columns, rows } = authorsTableData();
+  const {columns, rows} = authorsTableData();
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
+      <DashboardNavbar/>
       <MDBox pt={6} pb={3}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
@@ -33,7 +33,7 @@ function History() {
               </MDBox>
               <MDBox pt={3}>
                 <DataTable
-                  table={{ columns, rows }}
+                  table={{columns, rows}}
                   isSorted={false}
                   entriesPerPage={false}
                   showTotalEntries={false}

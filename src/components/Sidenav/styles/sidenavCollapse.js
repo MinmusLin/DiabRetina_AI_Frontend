@@ -1,10 +1,10 @@
 function collapseItem(theme, ownerState) {
-  const { palette, transitions, breakpoints, boxShadows, borders, functions } = theme;
-  const { active, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = ownerState;
-  const { white, transparent, dark, grey, gradients } = palette;
-  const { md } = boxShadows;
-  const { borderRadius } = borders;
-  const { pxToRem, rgba, linearGradient } = functions;
+  const {palette, transitions, breakpoints, boxShadows, borders, functions} = theme;
+  const {active, transparentSidenav, whiteSidenav, darkMode, sidenavColor} = ownerState;
+  const {white, transparent, dark, grey, gradients} = palette;
+  const {md} = boxShadows;
+  const {borderRadius} = borders;
+  const {pxToRem, rgba, linearGradient} = functions;
 
   return {
     background: active
@@ -49,11 +49,11 @@ function collapseItem(theme, ownerState) {
 }
 
 function collapseIconBox(theme, ownerState) {
-  const { palette, transitions, borders, functions } = theme;
-  const { transparentSidenav, whiteSidenav, darkMode, active } = ownerState;
-  const { white, dark } = palette;
-  const { borderRadius } = borders;
-  const { pxToRem } = functions;
+  const {palette, transitions, borders, functions} = theme;
+  const {transparentSidenav, whiteSidenav, darkMode, active} = ownerState;
+  const {white, dark} = palette;
+  const {borderRadius} = borders;
+  const {pxToRem} = functions;
 
   return {
     minWidth: pxToRem(32),
@@ -76,15 +76,15 @@ function collapseIconBox(theme, ownerState) {
   };
 }
 
-const collapseIcon = ({ palette: { white, gradients } }, { active }) => ({
+const collapseIcon = ({palette: {white, gradients}}, {active}) => ({
   color: active ? white.main : gradients.dark.state,
 });
 
 function collapseText(theme, ownerState) {
-  const { typography, transitions, breakpoints, functions } = theme;
-  const { miniSidenav, transparentSidenav, active } = ownerState;
-  const { size, fontWeightRegular, fontWeightLight } = typography;
-  const { pxToRem } = functions;
+  const {typography, transitions, breakpoints, functions} = theme;
+  const {miniSidenav, transparentSidenav, active} = ownerState;
+  const {size, fontWeightRegular, fontWeightLight} = typography;
+  const {pxToRem} = functions;
 
   return {
     marginLeft: pxToRem(10),
@@ -107,4 +107,4 @@ function collapseText(theme, ownerState) {
   };
 }
 
-export { collapseItem, collapseIconBox, collapseIcon, collapseText };
+export {collapseItem, collapseIconBox, collapseIcon, collapseText};

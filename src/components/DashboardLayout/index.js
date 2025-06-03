@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
 import PropTypes from "prop-types";
 import MDBox from "../MDBox";
-import { useMaterialUIController, setLayout } from "../../context";
+import {useMaterialUIController, setLayout} from "../../context";
 
-function DashboardLayout({ children }) {
+function DashboardLayout({children}) {
   const [controller, dispatch] = useMaterialUIController();
-  const { miniSidenav } = controller;
-  const { pathname } = useLocation();
+  const {miniSidenav} = controller;
+  const {pathname} = useLocation();
 
   useEffect(() => {
     setLayout(dispatch, "diagnosis");
@@ -15,7 +15,7 @@ function DashboardLayout({ children }) {
 
   return (
     <MDBox
-      sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
+      sx={({breakpoints, transitions, functions: {pxToRem}}) => ({
         p: 3,
         position: "relative",
         [breakpoints.up("xl")]: {

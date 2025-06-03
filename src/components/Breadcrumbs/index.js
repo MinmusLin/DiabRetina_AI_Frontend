@@ -1,19 +1,19 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import { Breadcrumbs as MuiBreadcrumbs } from "@mui/material";
+import {Breadcrumbs as MuiBreadcrumbs} from "@mui/material";
 import Icon from "@mui/material/Icon";
 import MDBox from "../MDBox";
 import MDTypography from "../MDTypography";
 
-function Breadcrumbs({ icon, title, subtitle, route, light }) {
+function Breadcrumbs({icon, title, subtitle, route, light}) {
   const routes = route.slice(0, -1);
 
   return (
-    <MDBox mr={{ xs: 0, xl: 8 }}>
+    <MDBox mr={{xs: 0, xl: 8}}>
       <MuiBreadcrumbs
         sx={{
           "& .MuiBreadcrumbs-separator": {
-            color: ({ palette: { white, grey } }) => (light ? white.main : grey[600]),
+            color: ({palette: {white, grey}}) => (light ? white.main : grey[600]),
           },
         }}
       >
@@ -23,7 +23,7 @@ function Breadcrumbs({ icon, title, subtitle, route, light }) {
             variant="body2"
             color={light ? "white" : "dark"}
             opacity={light ? 0.8 : 0.5}
-            sx={{ lineHeight: 0 }}
+            sx={{lineHeight: 0}}
           >
             <Icon>{icon}</Icon>
           </MDTypography>
@@ -37,7 +37,7 @@ function Breadcrumbs({ icon, title, subtitle, route, light }) {
               textTransform="capitalize"
               color={light ? "white" : "dark"}
               opacity={light ? 0.8 : 0.5}
-              sx={{ lineHeight: 0 }}
+              sx={{lineHeight: 0}}
             >
               {el}
             </MDTypography>
@@ -48,7 +48,7 @@ function Breadcrumbs({ icon, title, subtitle, route, light }) {
           fontWeight="regular"
           textTransform="capitalize"
           color={light ? "white" : "dark"}
-          sx={{ lineHeight: 0 }}
+          sx={{lineHeight: 0}}
         >
           {title}
         </MDTypography>

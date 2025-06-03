@@ -6,7 +6,7 @@ import DashboardNavbar from "components/DashboardNavbar";
 function Agent() {
   return (
     <DashboardLayout>
-      <DashboardNavbar />
+      <DashboardNavbar/>
       <MDBox py={3}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -15,7 +15,7 @@ function Agent() {
               title="Agent"
               width="100%"
               height="800px"
-              style={{ border: "none" }}
+              style={{border: "none"}}
             />
           </Grid>
         </Grid>

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import {useState} from "react";
+import {Link} from "react-router-dom";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
@@ -40,30 +40,30 @@ function Basic() {
           <MDTypography display="block" variant="button" color="white" my={1}>
             欢迎使用糖尿病性视网膜病变诊断智能平台
           </MDTypography>
-          <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
+          <Grid container spacing={3} justifyContent="center" sx={{mt: 1, mb: 2}}>
             <Grid item xs={2}>
               <MDTypography component={MuiLink} variant="body1" color="white">
-                <FacebookIcon color="inherit" />
+                <FacebookIcon color="inherit"/>
               </MDTypography>
             </Grid>
             <Grid item xs={2}>
               <MDTypography component={MuiLink} variant="body1" color="white">
-                <GoogleIcon color="inherit" />
+                <GoogleIcon color="inherit"/>
               </MDTypography>
             </Grid>
             <Grid item xs={2}>
               <MDTypography component={MuiLink} variant="body1" color="white">
-                <GitHubIcon color="inherit" />
+                <GitHubIcon color="inherit"/>
               </MDTypography>
             </Grid>
             <Grid item xs={2}>
               <MDTypography component={MuiLink} variant="body1" color="white">
-                <TwitterIcon color="inherit" />
+                <TwitterIcon color="inherit"/>
               </MDTypography>
             </Grid>
             <Grid item xs={2}>
               <MDTypography component={MuiLink} variant="body1" color="white">
-                <InstagramIcon color="inherit" />
+                <InstagramIcon color="inherit"/>
               </MDTypography>
             </Grid>
           </Grid>
@@ -71,19 +71,19 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="邮箱" fullWidth />
+              <MDInput type="email" label="邮箱" fullWidth/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="密码" fullWidth />
+              <MDInput type="password" label="密码" fullWidth/>
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
-              <Switch checked={rememberMe} onChange={handleSetRememberMe} />
+              <Switch checked={rememberMe} onChange={handleSetRememberMe}/>
               <MDTypography
                 variant="button"
                 fontWeight="regular"
                 color="text"
                 onClick={handleSetRememberMe}
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
+                sx={{cursor: "pointer", userSelect: "none", ml: -1}}
               >
                 &nbsp;&nbsp;保持登录状态
               </MDTypography>

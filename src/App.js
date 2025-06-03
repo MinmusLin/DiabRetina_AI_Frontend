@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
+import {useState, useEffect, useMemo} from "react";
+import {Routes, Route, Navigate, useLocation} from "react-router-dom";
+import {ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
@@ -11,10 +11,10 @@ import themeRTL from "assets/theme/theme-rtl";
 import themeDark from "assets/theme-dark";
 import themeDarkRTL from "assets/theme-dark/theme-rtl";
 import rtlPlugin from "stylis-plugin-rtl";
-import { CacheProvider } from "@emotion/react";
+import {CacheProvider} from "@emotion/react";
 import createCache from "@emotion/cache";
 import routes from "routes";
-import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
+import {useMaterialUIController, setMiniSidenav, setOpenConfigurator} from "context";
 import brandWhite from "./assets/images/icon.png";
 import brandDark from "./assets/images/icon.png";
 
@@ -32,7 +32,7 @@ export default function App() {
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
-  const { pathname } = useLocation();
+  const {pathname} = useLocation();
 
   useMemo(() => {
     const cacheRtl = createCache({
@@ -73,7 +73,7 @@ export default function App() {
         return getRoutes(route.collapse);
       }
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        return <Route exact path={route.route} element={route.component} key={route.key}/>;
       }
       return null;
     });
@@ -93,7 +93,7 @@ export default function App() {
       bottom="2rem"
       zIndex={99}
       color="dark"
-      sx={{ cursor: "pointer" }}
+      sx={{cursor: "pointer"}}
       onClick={handleConfiguratorOpen}
     >
       <Icon fontSize="small" color="inherit">
@@ -105,7 +105,7 @@ export default function App() {
   return direction === "rtl" ? (
     <CacheProvider value={rtlCache}>
       <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-        <CssBaseline />
+        <CssBaseline/>
         {layout === "diagnosis" && (
           <>
             <Sidenav
@@ -116,20 +116,20 @@ export default function App() {
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
-            <Configurator />
+            <Configurator/>
             {configsButton}
           </>
         )}
-        {layout === "vr" && <Configurator />}
+        {layout === "vr" && <Configurator/>}
         <Routes>
           {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="*" element={<Navigate to="/dashboard"/>}/>
         </Routes>
       </ThemeProvider>
     </CacheProvider>
   ) : (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
-      <CssBaseline />
+      <CssBaseline/>
       {layout === "diagnosis" && (
         <>
           <Sidenav
@@ -140,14 +140,14 @@ export default function App() {
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
-          <Configurator />
+          <Configurator/>
           {configsButton}
         </>
       )}
-      {layout === "vr" && <Configurator />}
+      {layout === "vr" && <Configurator/>}
       <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/diagnosis" />} />
+        <Route path="*" element={<Navigate to="/diagnosis"/>}/>
       </Routes>
     </ThemeProvider>
   );
