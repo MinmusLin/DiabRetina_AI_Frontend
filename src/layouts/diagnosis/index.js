@@ -24,12 +24,26 @@ function Diagnosis() {
   const [fileName, setFileName] = useState(null);
   const fileInputRef = useRef(null);
   const [lesionCounts, setLesionCounts] = useState(null);
+  const [aiResponse, setAiResponse] = useState(null);
+  const [isGeneratingDiagnosis, setIsGeneratingDiagnosis] = useState(false);
   const [lesionSeverity, setLesionSeverity] = useState({
     MA: "",
     HE: "",
     EX: "",
     SE: ""
   });
+
+  const nameRef = useRef(null);
+  const genderRef = useRef(null);
+  const ageRef = useRef(null);
+  const occupationRef = useRef(null);
+  const contactRef = useRef(null);
+  const addressRef = useRef(null);
+  const chiefComplaintRef = useRef(null);
+  const presentIllnessRef = useRef(null);
+  const pastHistoryRef = useRef(null);
+  const clinicalDiagnosisRef = useRef(null);
+  const treatmentPlanRef = useRef(null);
 
   const handleSeverityChange = (type) => (event) => {
     setLesionSeverity({
@@ -69,6 +83,52 @@ function Diagnosis() {
   const triggerFileInput = () => {
     if (!isLoading) {
       fileInputRef.current.click();
+    }
+  };
+
+  const handleGenerateDiagnosis = async () => {
+    setIsGeneratingDiagnosis(true);
+    setAiResponse(null);
+    const formData = {
+      name: nameRef.current.value,
+      gender: genderRef.current.value,
+      age: ageRef.current.value,
+      occupation: occupationRef.current.value,
+      contact: contactRef.current.value,
+      address: addressRef.current.value,
+      chief_complaint: chiefComplaintRef.current.value,
+      present_illness: presentIllnessRef.current.value,
+      past_history: pastHistoryRef.current.value,
+      ma_count: lesionCounts?.MA || 0,
+      he_count: lesionCounts?.HE || 0,
+      ex_count: lesionCounts?.EX || 0,
+      se_count: lesionCounts?.SE || 0,
+      ma_severity: lesionSeverity.MA,
+      he_severity: lesionSeverity.HE,
+      ex_severity: lesionSeverity.EX,
+      se_severity: lesionSeverity.SE,
+      clinical_diagnosis: clinicalDiagnosisRef.current.value,
+      treatment_plan: treatmentPlanRef.current.value
+    };
+
+    try {
+      const response = await fetch("http://110.42.214.164:8005/generate_diagnosis", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        console.error("Network response was not ok");
+      }
+      const data = await response.json();
+      setAiResponse(data.ai_response);
+    } catch (error) {
+      console.error("Error generating diagnosis:", error);
+      setAiResponse("AI 辅助诊断意见生成失败。");
+    } finally {
+      setIsGeneratingDiagnosis(false);
     }
   };
 
@@ -253,24 +313,24 @@ function Diagnosis() {
                     </MDTypography>
                     <Grid container spacing={2}>
                       <Grid item xs={12} md={3}>
-                        <MDInput label="姓名" fullWidth/>
+                        <MDInput label="姓名" fullWidth inputRef={nameRef}/>
                       </Grid>
                       <Grid item xs={12} md={3}>
-                        <MDInput label="性别" fullWidth/>
+                        <MDInput label="性别" fullWidth inputRef={genderRef}/>
                       </Grid>
                       <Grid item xs={12} md={3}>
-                        <MDInput label="年龄" fullWidth/>
+                        <MDInput label="年龄" fullWidth inputRef={ageRef}/>
                       </Grid>
                       <Grid item xs={12} md={3}>
-                        <MDInput label="职业" fullWidth/>
+                        <MDInput label="职业" fullWidth inputRef={occupationRef}/>
                       </Grid>
                     </Grid>
                     <Grid container spacing={2} mt={0.5}>
                       <Grid item xs={12} md={6}>
-                        <MDInput label="联系方式" fullWidth/>
+                        <MDInput label="联系方式" fullWidth inputRef={contactRef}/>
                       </Grid>
                       <Grid item xs={12} md={6}>
-                        <MDInput label="家庭住址" fullWidth/>
+                        <MDInput label="家庭住址" fullWidth inputRef={addressRef}/>
                       </Grid>
                     </Grid>
                   </MDBox>
@@ -285,6 +345,7 @@ function Diagnosis() {
                           rows={6}
                           fullWidth
                           placeholder="患者就诊时最主要的症状或体征，包括部位、性质、持续时间等。"
+                          inputRef={chiefComplaintRef}
                         />
                       </Grid>
                       <Grid item xs={12} md={4}>
@@ -296,6 +357,7 @@ function Diagnosis() {
                           rows={6}
                           fullWidth
                           placeholder="围绕主诉展开详细描述，包括起病情况、症状特点、伴随症状、诊疗经过、一般情况变化等。"
+                          inputRef={presentIllnessRef}
                         />
                       </Grid>
                       <Grid item xs={12} md={4}>
@@ -307,6 +369,7 @@ function Diagnosis() {
                           rows={6}
                           fullWidth
                           placeholder="患者过去的疾病史、手术史、外伤史、输血史、传染病史、过敏史等。"
+                          inputRef={pastHistoryRef}
                         />
                       </Grid>
                     </Grid>
@@ -515,6 +578,7 @@ function Diagnosis() {
                       rows={4}
                       fullWidth
                       placeholder="请填写患者的主要临床表现、体征、辅助检查结果及诊断意见。"
+                      inputRef={clinicalDiagnosisRef}
                     />
                   </MDBox>
                   <MDBox mb={3}>
@@ -526,12 +590,50 @@ function Diagnosis() {
                       rows={4}
                       fullWidth
                       placeholder="请详细描述治疗方案，包括药物名称及用法用量、治疗计划、随访周期等。"
+                      inputRef={treatmentPlanRef}
                     />
                   </MDBox>
                   <MDBox>
                     <MDTypography variant="h6" fontWeight="medium" gutterBottom>
                       AI 辅助诊断意见
                     </MDTypography>
+                    {!isGeneratingDiagnosis && !aiResponse && (
+                      <MDButton
+                        variant="gradient"
+                        color="info"
+                        onClick={handleGenerateDiagnosis}
+                        disabled={!lesionCounts}
+                      >
+                        生成 AI 辅助诊断意见
+                      </MDButton>
+                    )}
+                    {isGeneratingDiagnosis && (
+                      <MDBox display="flex" alignItems="center">
+                        <CircularProgress size={24} color="info" />
+                        <MDTypography variant="body2" color="text" ml={2}>
+                          AI 辅助诊断意见生成中
+                        </MDTypography>
+                      </MDBox>
+                    )}
+                    {aiResponse && (
+                      <MDBox
+                        pl={2}
+                        pr={2}
+                        pt={1.4}
+                        pb={1.4}
+                        borderRadius="lg"
+                        sx={{
+                          backgroundColor: "background.default",
+                          whiteSpace: "pre-wrap"
+                        }}
+                      >
+                        {aiResponse.split("\n").map((paragraph, index) => (
+                          <MDBox key={index} fontSize="16px" mt={0.6} mb={0.6}>
+                            {paragraph}
+                          </MDBox>
+                        ))}
+                      </MDBox>
+                    )}
                   </MDBox>
                 </MDBox>
               </DefaultCard>
