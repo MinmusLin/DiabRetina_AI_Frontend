@@ -510,11 +510,27 @@ function Diagnosis() {
                     <MDTypography variant="h6" fontWeight="medium" gutterBottom>
                       临床诊断意见
                     </MDTypography>
-                    <MDInput label="诊断意见" multiline rows={4} fullWidth/>
+                    <MDInput
+                      multiline
+                      rows={4}
+                      fullWidth
+                      placeholder="请填写患者的主要临床表现、体征、辅助检查结果及诊断意见。"
+                    />
+                  </MDBox>
+                  <MDBox mb={3}>
+                    <MDTypography variant="h6" fontWeight="medium" gutterBottom>
+                      治疗方案
+                    </MDTypography>
+                    <MDInput
+                      multiline
+                      rows={4}
+                      fullWidth
+                      placeholder="请详细描述治疗方案，包括药物名称及用法用量、治疗计划、随访周期等。"
+                    />
                   </MDBox>
                   <MDBox>
                     <MDTypography variant="h6" fontWeight="medium" gutterBottom>
-                      AI 诊断意见
+                      AI 辅助诊断意见
                     </MDTypography>
                   </MDBox>
                 </MDBox>
