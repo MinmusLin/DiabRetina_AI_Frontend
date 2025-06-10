@@ -663,7 +663,7 @@ function Diagnosis() {
                     )}
                     {isGeneratingDiagnosis && (
                       <MDBox display="flex" alignItems="center">
-                        <CircularProgress size={24} color="info" />
+                        <CircularProgress size={24} color="info"/>
                         <MDTypography variant="body2" color="text" ml={2}>
                           AI 辅助诊断意见生成中
                         </MDTypography>
@@ -708,7 +708,7 @@ function Diagnosis() {
         )}
         {isGeneratingReport && (
           <MDBox display="flex" alignItems="center">
-            <CircularProgress size={24} color="info" />
+            <CircularProgress size={24} color="info"/>
             <MDTypography variant="body2" color="text" ml={2}>
               DR 诊断分析报告生成中
             </MDTypography>
