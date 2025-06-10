@@ -1,14 +1,14 @@
-# DiabRetina AI
+# DiabRetina AI Frontend
 
 ## 仓库名称
 
-DiabRetina_AI
+DiabRetina_AI_Frontend
 
 ## 仓库简介
 
-DiabRetina AI: Intelligent Platform for Diagnosis of Diabetic Retinopathy.
+DiabRetina AI: Intelligent Platform for Diagnosis of Diabetic Retinopathy (Frontend Application).
 
-DiabRetina AI：糖尿病性视网膜病变诊断智能平台。
+DiabRetina AI：糖尿病性视网膜病变诊断智能平台（前端应用程序）。
 
 > ***Relevant course***
 > * Comprehensive Project in Specialized Direction 2025 (2025年同济大学专业方向综合项目)
@@ -23,4 +23,4 @@ The code and materials contained in this repository are intended for personal le
 
 ## 文档更新日期
 
-2025年5月15日
+2025年6月10日
