@@ -26,7 +26,7 @@ function DefaultCard({color, title, icon, children}) {
           </Icon>
         </MDBox>
         <MDBox textAlign="right" lineHeight={1.25}>
-          <MDTypography variant="h5">{title}</MDTypography>
+          <MDTypography variant="h5" mt="6px" mr="4px">{title}</MDTypography>
         </MDBox>
       </MDBox>
       {/* Slot */}
