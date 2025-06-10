@@ -23,6 +23,7 @@ function Diagnosis() {
   const [isLoading, setIsLoading] = useState(false);
   const [fileName, setFileName] = useState(null);
   const fileInputRef = useRef(null);
+  const [lesionCounts, setLesionCounts] = useState(null);
   const [lesionSeverity, setLesionSeverity] = useState({
     MA: "",
     HE: "",
@@ -43,6 +44,7 @@ function Diagnosis() {
     setIsLoading(true);
     setFileName(file.name);
     setPredictedImage(null);
+    setLesionCounts(null);
     const formData = new FormData();
     formData.append("file", file);
     try {
@@ -56,6 +58,7 @@ function Diagnosis() {
       const data = await response.json();
       setPreprocessedImage(`data:image/jpeg;base64,${data.preprocessed_image}`);
       setPredictedImage(`data:image/jpeg;base64,${data.predicted_image}`);
+      setLesionCounts(data.lesion_counts);
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
@@ -327,7 +330,14 @@ function Diagnosis() {
                               backgroundColor: LESION_COLORS.MA
                             }}
                           />
-                          微动脉瘤（MA）
+                          <MDBox>
+                            微动脉瘤（MA）
+                          </MDBox>
+                          {lesionCounts && (
+                            <MDBox ml="auto">
+                              {lesionCounts.MA} 处
+                            </MDBox>
+                          )}
                         </MDBox>
                         <FormControl fullWidth>
                           <InputLabel id="dr-severity-label">
@@ -367,7 +377,14 @@ function Diagnosis() {
                               backgroundColor: LESION_COLORS.HE
                             }}
                           />
-                          出血点（HE）
+                          <MDBox>
+                            出血点（HE）
+                          </MDBox>
+                          {lesionCounts && (
+                            <MDBox ml="auto">
+                              {lesionCounts.HE} 处
+                            </MDBox>
+                          )}
                         </MDBox>
                         <FormControl fullWidth>
                           <InputLabel id="dr-severity-label">
@@ -407,7 +424,14 @@ function Diagnosis() {
                               backgroundColor: LESION_COLORS.EX
                             }}
                           />
-                          硬性渗出（EX）
+                          <MDBox>
+                            硬性渗出（EX）
+                          </MDBox>
+                          {lesionCounts && (
+                            <MDBox ml="auto">
+                              {lesionCounts.EX} 处
+                            </MDBox>
+                          )}
                         </MDBox>
                         <FormControl fullWidth>
                           <InputLabel id="dr-severity-label">
@@ -447,7 +471,14 @@ function Diagnosis() {
                               backgroundColor: LESION_COLORS.SE
                             }}
                           />
-                          软性渗出（SE）
+                          <MDBox>
+                            软性渗出（SE）
+                          </MDBox>
+                          {lesionCounts && (
+                            <MDBox ml="auto">
+                              {lesionCounts.SE} 处
+                            </MDBox>
+                          )}
                         </MDBox>
                         <FormControl fullWidth>
                           <InputLabel id="dr-severity-label">
