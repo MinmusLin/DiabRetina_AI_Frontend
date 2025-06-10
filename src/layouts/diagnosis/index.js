@@ -317,7 +317,7 @@ function Diagnosis() {
                     </MDTypography>
                     <Grid container spacing={2}>
                       <Grid item xs={6} sm={3} md={3}>
-                        <MDBox display="flex" alignItems="flex-start" fontSize="16px">
+                        <MDBox display="flex" alignItems="flex-start" fontSize="16px" mb={1}>
                           <MDBox
                             width={32}
                             height={20}
@@ -364,7 +364,7 @@ function Diagnosis() {
                         </FormControl>
                       </Grid>
                       <Grid item xs={6} sm={3} md={3}>
-                        <MDBox display="flex" alignItems="flex-start" fontSize="16px">
+                        <MDBox display="flex" alignItems="flex-start" fontSize="16px" mb={1}>
                           <MDBox
                             width={32}
                             height={20}
@@ -411,7 +411,7 @@ function Diagnosis() {
                         </FormControl>
                       </Grid>
                       <Grid item xs={6} sm={3} md={3}>
-                        <MDBox display="flex" alignItems="flex-start" fontSize="16px">
+                        <MDBox display="flex" alignItems="flex-start" fontSize="16px" mb={1}>
                           <MDBox
                             width={32}
                             height={20}
@@ -458,7 +458,7 @@ function Diagnosis() {
                         </FormControl>
                       </Grid>
                       <Grid item xs={6} sm={3} md={3}>
-                        <MDBox display="flex" alignItems="flex-start" fontSize="16px">
+                        <MDBox display="flex" alignItems="flex-start" fontSize="16px" mb={1}>
                           <MDBox
                             width={32}
                             height={20}
