@@ -18,6 +18,7 @@ const LESION_COLORS = {
 };
 
 function Diagnosis() {
+  const [fileUuid, setFileUuid] = useState(null);
   const [preprocessedImage, setPreprocessedImage] = useState(null);
   const [predictedImage, setPredictedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,8 @@ function Diagnosis() {
   const [lesionCounts, setLesionCounts] = useState(null);
   const [aiResponse, setAiResponse] = useState(null);
   const [isGeneratingDiagnosis, setIsGeneratingDiagnosis] = useState(false);
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
+  const [reportGenerated, setReportGenerated] = useState(false);
   const [lesionSeverity, setLesionSeverity] = useState({
     MA: "",
     HE: "",
@@ -73,6 +76,7 @@ function Diagnosis() {
       setPreprocessedImage(`data:image/jpeg;base64,${data.preprocessed_image}`);
       setPredictedImage(`data:image/jpeg;base64,${data.predicted_image}`);
       setLesionCounts(data.lesion_counts);
+      setFileUuid(data.uuid);
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
@@ -110,7 +114,6 @@ function Diagnosis() {
       clinical_diagnosis: clinicalDiagnosisRef.current.value,
       treatment_plan: treatmentPlanRef.current.value
     };
-
     try {
       const response = await fetch("http://110.42.214.164:8005/generate_diagnosis", {
         method: "POST",
@@ -129,6 +132,57 @@ function Diagnosis() {
       setAiResponse("AI 辅助诊断意见生成失败。");
     } finally {
       setIsGeneratingDiagnosis(false);
+    }
+  };
+
+  const handleGenerateReport = async () => {
+    if (!fileUuid) {
+      console.error("No file UUID available");
+      return;
+    }
+    setIsGeneratingReport(true);
+    try {
+      const formData = {
+        uuid: fileUuid,
+        name: nameRef.current.value,
+        gender: genderRef.current.value,
+        age: ageRef.current.value,
+        occupation: occupationRef.current.value,
+        contact: contactRef.current.value,
+        address: addressRef.current.value,
+        chief_complaint: chiefComplaintRef.current.value,
+        present_illness: presentIllnessRef.current.value,
+        past_history: pastHistoryRef.current.value,
+        ma_count: lesionCounts?.MA || 0,
+        he_count: lesionCounts?.HE || 0,
+        ex_count: lesionCounts?.EX || 0,
+        se_count: lesionCounts?.SE || 0,
+        ma_severity: lesionSeverity.MA,
+        he_severity: lesionSeverity.HE,
+        ex_severity: lesionSeverity.EX,
+        se_severity: lesionSeverity.SE,
+        clinical_diagnosis: clinicalDiagnosisRef.current.value,
+        treatment_plan: treatmentPlanRef.current.value,
+        ai_diagnosis: aiResponse
+      };
+      const response = await fetch("http://110.42.214.164:8005/generate_report", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        console.error("Network response was not ok");
+      }
+      const data = await response.json();
+      setReportGenerated(true);
+      window.open(data.report_path, "_blank");
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error generating report:", error);
+    } finally {
+      setIsGeneratingReport(false);
     }
   };
 
@@ -171,7 +225,7 @@ function Diagnosis() {
                       />
                       <MDButton
                         variant="gradient"
-                        color={isLoading ? "secondary" : "info"}
+                        color="info"
                         onClick={triggerFileInput}
                         sx={{mb: 2}}
                         disabled={isLoading}
@@ -246,7 +300,7 @@ function Diagnosis() {
                         backgroundColor: LESION_COLORS.MA
                       }}
                     />
-                    微动脉瘤（Microaneurysm，MA）：视网膜毛细血管壁局部膨出形成的微小瘤状结构，直径较小，是糖尿病视网膜病变最早的病理特征。
+                    微动脉瘤（Microaneurysm，MA）：视网膜毛细血管壁局部膨出形成的微小瘤状结构，是糖尿病视网膜病变最早的病理特征。
                   </MDBox>
                   <MDBox display="flex" alignItems="flex-start">
                     <MDBox
@@ -640,6 +694,26 @@ function Diagnosis() {
             </MDBox>
           </Grid>
         </Grid>
+      </MDBox>
+      <MDBox display="flex" justifyContent="center" mb={1}>
+        {!isGeneratingReport && !reportGenerated && (
+          <MDButton
+            variant="gradient"
+            color="info"
+            onClick={handleGenerateReport}
+            disabled={!aiResponse || !fileUuid}
+          >
+            生成 DR 诊断分析报告
+          </MDButton>
+        )}
+        {isGeneratingReport && (
+          <MDBox display="flex" alignItems="center">
+            <CircularProgress size={24} color="info" />
+            <MDTypography variant="body2" color="text" ml={2}>
+              DR 诊断分析报告生成中
+            </MDTypography>
+          </MDBox>
+        )}
       </MDBox>
     </DashboardLayout>
   );
