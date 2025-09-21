@@ -7,33 +7,35 @@
 >
 > 本仓库包含的代码和资料仅用于个人学习和研究目的，不得用于任何商业用途。请其他用户在下载或参考本仓库内容时，严格遵守**学术诚信原则**，不得将这些资料用于任何形式的作业提交或其他可能违反学术诚信的行为。本人对因不恰当使用仓库内容导致的任何直接或间接后果不承担责任。请在使用前务必确保您的行为符合所在学校或机构的规定，以及适用的法律法规。如有任何问题，请通过[电子邮件](mailto:minmuslin@outlook.com)与我联系。
 
-DiabRetina AI: Intelligent Platform for Diagnosis of Diabetic Retinopathy (Frontend Application).
+DiabRetina AI: Intelligent Platform for Diagnosis of Diabetic Retinopathy.
 
-DiabRetina AI：糖尿病性视网膜病变诊断智能平台（前端应用程序）。
+DiabRetina AI：糖尿病性视网膜病变诊断智能平台。
 
 > ***Relevant course***
 > * Comprehensive Project in Specialized Direction 2025 (2025 年同济大学专业方向综合项目)
 
 ## 项目组成
 
-* `/public`
-项目静态资源
+* [Backend](backend)
+后端应用程序
 
-* `/src`
-项目源代码
-
-* `jsconfig.json`
-JavaScript 项目配置文件
-
-* `package-lock.json`
-项目配置文件（锁定依赖版本）
-
-* `package.json`
-项目配置文件
+* [Frontend](frontend)
+前端应用程序
 
 ## 启动程序
 
+启动后端应用程序：
+
 ```bash
+cd backend
+chmod +x run.sh
+./run.sh
+```
+
+启动前端应用程序：
+
+```bash
+cd frontend
 npm install
 npm run start
 ```
