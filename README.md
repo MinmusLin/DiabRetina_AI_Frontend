@@ -14,7 +14,7 @@ DiabRetina AI：糖尿病性视网膜病变诊断智能平台。
 > ***Relevant course***
 > * Comprehensive Project in Specialized Direction 2025 (2025 年同济大学专业方向综合项目)
 
-## 项目组成
+## 仓库组成
 
 * [Backend](backend)
 后端应用程序
