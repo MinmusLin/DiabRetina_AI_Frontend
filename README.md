@@ -1,4 +1,4 @@
-# DiabRetina AI Frontend
+# DiabRetina AI
 
 > [!CAUTION]
 > ### 免责声明 | Disclaimer
